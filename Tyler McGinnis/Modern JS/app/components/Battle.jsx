@@ -50,7 +50,7 @@ class PlayerInput extends React.Component {
             Submit
         </button>
       </form>
-    )
+    );
   }
 }
 
@@ -58,11 +58,11 @@ PlayerInput.propTypes = {
   id: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   onSubmit: PropTypes.func.isRequired,
-}
+};
 
 PlayerInput.defaultProps = {
   label: 'Username',
-}
+};
 
 class Battle extends React.Component {
   constructor(props) {
