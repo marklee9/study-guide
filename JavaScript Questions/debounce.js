@@ -1,5 +1,9 @@
-// Writing a debounce
+// Debounce
 
+// Common Use cases :
+//      1. Managing data traffic
+//      2. save / auto save functionality
+//      3. debouncing API calls
 // -------------------------------------------------------------------------------------
 // How setTimeout works :
 //   SetTimeout will take in a callback and execute that after specified number (ms);
@@ -26,14 +30,16 @@ clearTimeout(id);
 // -------------------------------------------------------------------------------------
 // Using two methods above, we can make a debounce function.
 
-function debounce(func, wait) {
+// Pseudo code :
+
+function psudoDebounce(func, wait) {
   let timeout;
 
   // passing in arguments.
   return (...args) => {
     // args => [1, 2, 3];
-
     clearTimeout(timeout);  // => clear the previous setTimeout.
+
     timeout = setTimeout(() => func(...args), wait);  //setting the new setTimeout.
   };
 }
@@ -49,6 +55,8 @@ const mark = {
   }, 1000)
 };
 
+
+
 mark.sayHi(); //=> `this` is defined 
 
 // -------------------------------------------------------------------------------------
@@ -57,12 +65,14 @@ mark.sayHi(); //=> `this` is defined
 function debounce(func, wait) {
   let timeout;
 
-  return function(...args){
+  return function(){
+    let args = arguments;
     let context = this;
+    
     clearTimeout(timeout); 
 
     // binding the context with the function.
-    timeout = setTimeout(() => func.apply(context, ...args), wait); 
+    timeout = setTimeout(() => func.apply(context, args), wait); 
   };
 }
 
