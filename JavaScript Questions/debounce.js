@@ -36,3 +36,33 @@ function debounce(func, wait) {
     timeout = setTimeout(() => func(...args), wait);  //setting the new setTimeout.
   };
 }
+
+// This is a working solution but `this` is still bound to the global scope.
+// It will not work for case like this :
+
+const mark = {
+  name: 'mark',
+  sayHi: debounce(() => {
+    console.log(this);      //=> Window.
+    console.log(this.name);   //=> undefined.
+  })
+}
+
+mark.sayHi(); //=> `this` is defined 
+
+// -------------------------------------------------------------------------------------
+// We need to bind this to the context of which this debounce is being called
+
+function debounce(func, wait) {
+  let timeout;
+
+  return (...args) => {
+
+    let context = this;
+    clearTimeout(timeout); 
+
+    // binding the context with the function.
+    timeout = setTimeout(() => func.apply(context, ...args), wait); 
+  };
+}
+
