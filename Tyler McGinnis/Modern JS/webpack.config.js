@@ -5,7 +5,7 @@ module.exports = {
   // @babel/polyfill is necessary because incase the user isn't using a brower that
   // supports Promise, the app that used any Promise will not work.
   // by installing babel/polyfill, ./app/index.js can now use promises
-  entry: ['@babel/polyfill','./app/index.js'],
+  entry: ['@babel/polyfill','whatwg-fetch', './app/index.js'],
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: 'index_bundle.js',
