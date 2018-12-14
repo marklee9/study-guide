@@ -5,9 +5,10 @@
 //   SetTimeout will take in a callback and execute that after specified number (ms);
 //   it will return the setTimeout id;
 
-setTimeout(() => alert("Hello"), 3000);
+setTimeout(() => alert("Hello"), 3000); 
 
-=> 6; // returns setTimeout ID;
+//=> 6;
+// returns setTimeout ID;
 
 // after 3 seconds it will alert with a text "hello"
 
