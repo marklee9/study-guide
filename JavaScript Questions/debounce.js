@@ -17,9 +17,9 @@ setTimeout(() => alert("Hello"), 3000);
 // How clearTimeout works :
 //   if you want to clear the setTimeout, you need to put in the id of the setTimeout.
 
-let timeout = setTimeout(() => alert("Hello"), 3000);
+let id = setTimeout(() => alert("Hello"), 3000);
 
-clearTimeout(timeout);
+clearTimeout(id);
 
 // alert will not be executed;
 
@@ -43,11 +43,11 @@ function debounce(func, wait) {
 
 const mark = {
   name: 'mark',
-  sayHi: debounce(() => {
-    console.log(this);      //=> Window.
+  sayHi: debounce(function(){
+    // console.log(this);      //=> Window.
     console.log(this.name);   //=> undefined.
-  })
-}
+  }, 1000)
+};
 
 mark.sayHi(); //=> `this` is defined 
 
@@ -57,8 +57,7 @@ mark.sayHi(); //=> `this` is defined
 function debounce(func, wait) {
   let timeout;
 
-  return (...args) => {
-
+  return function(...args){
     let context = this;
     clearTimeout(timeout); 
 
@@ -66,4 +65,6 @@ function debounce(func, wait) {
     timeout = setTimeout(() => func.apply(context, ...args), wait); 
   };
 }
+
+
 
