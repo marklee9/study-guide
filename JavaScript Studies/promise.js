@@ -1,10 +1,15 @@
 import Promise from 'promise';
+
 // Promise
+// Common use case : Handling JavaScript Asynchronous operations.
+
+
+
 
 // -------------------------------------------------------------------------------------
 // Making simplest promise.
 
-const simplePromise = new Promise((resolve, reject) => {
+let simplePromise = new Promise((resolve, reject) => {
   
   //=> this value will be passed on when resolved. Most of the time, it will pass on JSON.
   resolve("Hi, nice to meet you");  
@@ -25,6 +30,7 @@ simplePromise = new Promise((resolve, reject) => {
 });
 
 simplePromise.then((res) => console.log(res)); 
+
 //=> this will give you "Hi, nice to meet you", after 1 second.
 
 
@@ -46,7 +52,7 @@ simplePromise = new Promise((resolve, reject) => {
 simplePromise.then(
   (res) => console.log(res),
   (error) => console.log(error) //=> this will give you "Rejected".
-  ); 
+); 
 
 // Or use catch.
 simplePromise
@@ -55,7 +61,6 @@ simplePromise
 
 
 // -------------------------------------------------------------------------------------
-
 
 const secondPromise = new Promise((resolve, reject) => {
   setTimeout(() => resolve("resolved!"), 5000);  // resolve after 5 sec.
