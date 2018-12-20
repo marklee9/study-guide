@@ -32,7 +32,7 @@ clearTimeout(id);
 
 // Pseudo code :
 
-function psudoDebounce(func, wait) {
+function pseudoDebounce(func, wait) {
   let timeout;
 
   // passing in arguments.
