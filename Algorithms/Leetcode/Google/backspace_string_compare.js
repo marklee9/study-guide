@@ -35,8 +35,8 @@ var backspaceCompare = function (S, T) {
 
       if (ch === "#") {
         skip++;
-        continue;
-      }
+        continue;  
+      } 
 
       if (skip > 0) {
         skip--;
