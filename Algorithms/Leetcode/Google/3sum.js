@@ -23,7 +23,7 @@ var threeSum = function (nums) {
 
   for (let i = 0; i < array.length - 2; i++) {
     if (array[i] > 0) return result;
-    if (i > 0 && array[i] == array[i - 1]) continue; //avoiding duplicates
+    if (i > 0 && array[i] === array[i - 1]) continue; //avoiding duplicates
 
     let j = i + 1;
     let k = array.length - 1;
@@ -33,8 +33,8 @@ var threeSum = function (nums) {
         result.push([nums[i], nums[j], nums[k]]);
         j++;
         k--;
-        while (j < k && nums[j] == nums[j - 1]) j++; //avoiding duplicates
-        while (j < k && nums[k] == nums[k + 1]) k--; //avoiding duplicates
+        while (j < k && nums[j] === nums[j - 1]) j++; //avoiding duplicates
+        while (j < k && nums[k] === nums[k + 1]) k--; //avoiding duplicates
 
       } else if (nums[i] + nums[j] + nums[k] > 0) {
         k--;

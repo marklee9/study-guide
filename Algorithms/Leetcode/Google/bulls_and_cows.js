@@ -21,3 +21,28 @@
 // Note: You may assume that the secret number and your friend's guess only contain digits, and their lengths are always equal.
 
 
+var getHint = function (secret, guess) {
+  let map = {};
+  let newG = "";
+  let a = 0;
+  let b = 0;
+
+  for (let i = 0; i < secret.length; i++) {
+    if (secret[i] === guess[i]) {
+      a++;
+    } else {
+      if (!map[secret[i]]) map[secret[i]] = 0;
+      map[secret[i]]++;
+      newG += guess[i];
+    }
+  }
+
+  for (let i = 0; i < newG.length; i++) {
+    if (map[newG[i]]) {
+      b++;
+      map[newG[i]]--;
+    }
+  }
+
+  return a + "A" + b + "B";
+};
