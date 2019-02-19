@@ -62,5 +62,5 @@ var calcEquation = function (equations, values, queries) {
     }
 
     return map;
-  };
+  }
 };

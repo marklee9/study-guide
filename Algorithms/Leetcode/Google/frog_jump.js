@@ -37,8 +37,8 @@ var canCross = function (stones) {
     cache[i] = [];
     for (let j = 0; j < i; j++) {
       for (let step of cache[j]) {
-        if (Math.abs(stones[j]+step-stones[i]) <= 1) {
-          cache[i].push(stones[i]-stones[j]);
+        if (Math.abs(stones[j] + step - stones[i]) <= 1) {
+          cache[i].push(stones[i] - stones[j]);
           break; // once you push one in there is no other ones.
         }
       }
