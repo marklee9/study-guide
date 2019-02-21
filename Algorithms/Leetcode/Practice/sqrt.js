@@ -14,8 +14,7 @@
 //              the decimal part is truncated, 2 is returned.
 
 var mySqrt = function (x) {
-  let low = 1,
-    high = x;
+  let low = 1, high = x;
   while (true) {
     let mid = Math.floor((low + high) / 2);
     let prev = mid - 1;
