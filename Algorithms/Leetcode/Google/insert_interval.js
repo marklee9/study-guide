@@ -21,20 +21,16 @@ var insert = function (intervals, newInterval) {
 
   while (intervals.length) {
     let int = intervals.shift();
-    let {
-      start,
-      end
-    } = int;
-    let {
-      start: ns,
-      end: ne
-    } = curr;
+    let { start, end } = int;
+    let { start: ns, end: ne } = curr;
 
     if (end < ns) {
-      result.push(int)
+      result.push(int);
+
     } else if (ne >= end || ne >= start) {
       curr.start = Math.min(start, ns);
       curr.end = Math.max(end, ne);
+
     } else {
       if (!isCurrIn) {
         result.push(curr);
@@ -43,6 +39,7 @@ var insert = function (intervals, newInterval) {
       result.push(int);
     }
   }
+  
   if (!isCurrIn) result.push(curr);
   return result;
 };
