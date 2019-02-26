@@ -20,3 +20,62 @@ Output: -1
 Note:
 You may assume that you have an infinite number of each kind of coin.
 */
+
+function coinChange(coins, target) {
+  if (target === 0) return 0;
+  let n = Infinity;
+ 
+  for (let coin of coins) {
+    // amount of coins it has right now in this function.
+    let curr = 0;
+
+    if (target >= coin) {
+      let next = coinChange(coins, target - coin);
+
+      // next could return either 0 or -1;
+      // we don't want to take it if its 0;
+      if (next >= 0) {
+        curr = 1 + next;
+      }
+    }
+    // curr is only positive when next didn't return -1;
+    if (curr > 0) {
+      n = Math.min(n, curr);
+    }
+  }
+
+  let result = n === Infinity ? - 1 : n;
+  return result;
+}
+
+// Making it Dynamic!
+
+function coinChange2(coins, target) {
+  let cache = {};
+  return helper(coins, target);
+
+  function helper(coins, target) {
+    if (target === 0) return 0;
+    if (cache[target]) return cache[target];
+
+    let n = Infinity;
+  
+    for (let coin of coins) {
+      let curr = 0;
+  
+      if (target >= coin) {
+        let next = helper(coins, target - coin);
+        if (next >= 0) {
+          curr = 1 + next;
+        }
+      }
+      if (curr > 0) {
+        n = Math.min(n, curr);
+      }
+    }
+  
+    let result = n === Infinity ? -1 : n;
+    cache[target] = result;
+    return result;
+  }
+}
