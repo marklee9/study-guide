@@ -13,6 +13,19 @@ the root or a leaf, but it must go downwards
 
 */
 
+// brute force way
 function pathWithSum(root, target) {
-  
+  return helper(root, []);
+
+  function helper(node, acc) {
+    if (!node) return false;
+    
+    acc = acc.map(e => e + node.val);
+    acc.push(node.val); 
+
+    if (acc.includes(target)) return true;
+    if (helper(node.left, acc.slice(0))) return true;
+    if (helper(node.right, acc.slice(0))) return true;
+    return false;
+  }
 }
