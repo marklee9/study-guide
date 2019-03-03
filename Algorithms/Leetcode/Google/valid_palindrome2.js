@@ -3,9 +3,11 @@
 // Example 1:
 //   Input: "aba"
 // Output: True
+
 // Example 2:
-//   Input: "abca"
+// Input: "abca"
 // Output: True
+
 // Explanation: You could delete the character 'c'.
 
 function validPalindrome(string) {
@@ -19,6 +21,7 @@ function validPalindrome(string) {
     i++;
     j--;
   }
+
   return true;
 
   function isPal(one, two) {

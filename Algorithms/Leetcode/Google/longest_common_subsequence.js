@@ -4,7 +4,6 @@
 // "ABAZDC", "BACBAD" => "ABAD"
 // "AGGTAB", "GXTXAYB" => "GTAB"
 
-
 // "", "asdf" => ""
 // "asdf", "" => ""
 
@@ -22,6 +21,7 @@ function lcs(s1, s2) {
 
     if (s1[n] === s2[m]) {
       helper(n - 1, m - 1, string + s1[n]);
+
     } else {
       helper(n - 1, m, string);
       helper(n, m - 1, string);

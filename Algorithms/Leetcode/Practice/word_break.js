@@ -44,4 +44,3 @@ var wordBreak = function (s, wordDict) {
   return false;
 };
 
-// DP approach
