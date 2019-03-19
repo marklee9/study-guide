@@ -14,7 +14,7 @@
 // queries = [ ["a", "c"], ["b", "a"], ["a", "e"], ["a", "a"], ["x", "x"] ]. 
 // The input is always valid. You may assume that evaluating the queries will result in no division by zero and there is no contradiction.
 
-
+//DFS
 var calcEquation = function (equations, values, queries) {
   let result = [];
   let map = buildGraph(equations, values);
@@ -63,4 +63,53 @@ var calcEquation = function (equations, values, queries) {
 
     return map;
   }
+};
+
+//BFS
+var calcEquation = function (eqs, vals, queries) {
+  let store = {};
+  for (let i = 0; i < eqs.length; i++) {
+    addToStore(eqs[i][0], eqs[i][1], vals[i]);
+    addToStore(eqs[i][1], eqs[i][0], 1 / vals[i]);
+  }
+
+  let result = [];
+
+  for (let [start, end] of queries) {
+    if (start === end) {
+      result.push(store[start] ? 1.0 : -1.0);
+    } else {
+      let val = bfs(start, end);
+      if (val !== -1.0) addToStore(start, end, val);
+      result.push(val);
+    }
+  }
+
+  return result;
+
+
+  // helper functions.
+    function bfs(start, end) {
+      let set = new Set();
+      let queue = [[start, 1]];
+
+      while (queue.length) {
+        let [s, v] = queue.shift();
+        if (s === end) return v;
+
+        if (set.has(s)) continue;
+        set.add(s);
+
+        for (let e in store[s]) {
+          queue.push([e, v * store[s][e]]);
+        }
+      }
+
+      return -1.0;
+    }
+
+    function addToStore(a, b, val) {
+      if (!store[a]) store[a] = {};
+      store[a][b] = val;
+    }
 };

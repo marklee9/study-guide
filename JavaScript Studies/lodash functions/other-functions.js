@@ -216,30 +216,15 @@ var reducedUsers = reduce(users, function(result, user) {
 //     30: [{ name: "John", age: 30 }, { name: "Jack", age: 30 }] 
 // }
 
-function reduce(collection, iteratee, accumulator) {
-  const func = Array.isArray(collection) ? arrayReduce : baseReduce
-  const initAccum = arguments.length < 3
-  return func(collection, iteratee, accumulator, initAccum, baseEach)
-}
+Array.protoytpe.reduce = (cb, start) => {
+  const array = this.slice(0);
+  if (!start) start = array.shift();
 
-function arrayReduce(array, iteratee, accumulator, initAccum) {
-  let index = -1
-  const length = array == null ? 0 : array.length
-
-  if (initAccum && length) {
-    accumulator = array[++index]
+  for (let i = 0; i < this.length; i++) {
+    start = cb(start, this[i]);
   }
-  while (++index < length) {
-    accumulator = iteratee(accumulator, array[index], index, array)
-  }
-  return accumulator
-}
+  return start;
+};
 
-function baseReduce(collection, iteratee, accumulator, initAccum, eachFunc) {
-  eachFunc(collection, (value, index, collection) => {
-    accumulator = initAccum ?
-      (initAccum = false, value) :
-      iteratee(accumulator, value, index, collection)
-  })
-  return accumulator
-}
+
+[1,2,3].reduce((acc, el) => acc + el, 10);

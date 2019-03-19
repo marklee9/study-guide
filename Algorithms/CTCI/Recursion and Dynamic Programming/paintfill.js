@@ -45,6 +45,7 @@ function paintFill(matrix, click, color) {
     if (row < 0 || row >= matrix.length || col < 0 || col >= matrix[0].length) return;
 
     if (matrix[row][col] === originalColor) {
+      matrix[row][col] === color;
       dfs(row - 1, col);
       dfs(row + 1, col);
       dfs(row, col - 1);

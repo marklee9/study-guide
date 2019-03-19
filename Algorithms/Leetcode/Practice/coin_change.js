@@ -26,8 +26,7 @@ function coinChange(coins, target) {
   let n = Infinity;
  
   for (let coin of coins) {
-    // amount of coins it has right now in this function.
-    let curr = 0;
+    let curr = 0; // amount of coins it has right now in this function.
 
     if (target >= coin) {
       let next = coinChange(coins, target - coin);
@@ -38,6 +37,7 @@ function coinChange(coins, target) {
         curr = 1 + next;
       }
     }
+    
     // curr is only positive when next didn't return -1;
     if (curr > 0) {
       n = Math.min(n, curr);
