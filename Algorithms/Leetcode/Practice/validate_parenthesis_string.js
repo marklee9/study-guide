@@ -29,7 +29,6 @@ The string size will be in the range [1, 100].
 var checkValidString = function (s) {
   return helper(0, 0, 0);
 
-
   function helper(open, close, i) {
     if (close > open) return false;
     if (i === s.length) {

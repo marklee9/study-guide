@@ -23,19 +23,12 @@
 function findOrder(numCourses, prerequisites) {
   const seen = new Set();
   const seeing = new Set();
-
   const res = [];
-
   const adj = [...Array(numCourses)].map(r => []);
-  for (let [u, v] of prerequisites) {
-    adj[v].push(u);
-  }
+  
+  for (let [u, v] of prerequisites) adj[v].push(u);
 
-  for (let c = 0; c < numCourses; c++) {
-    if (!dfs(c)) {
-      return [];
-    }
-  }
+  for (let c = 0; c < numCourses; c++) if (!dfs(c)) return [];
 
   return res.reverse();
 
@@ -46,9 +39,7 @@ function findOrder(numCourses, prerequisites) {
 
     seeing.add(v);
     for (let nv of adj[v]) {
-      if (!dfs(nv)) {
-        return false;
-      }
+      if (!dfs(nv)) return false;
     }
     seeing.delete(v);
     seen.add(v);

@@ -13,10 +13,7 @@
 // s = "2[abc]3[cd]ef", return "abcabccdcdcdef".
 
 var decodeString = function (s) {
-  let stack = [
-    ["", 1]
-  ];
-
+  let stack = [["", 1]];
   let num = "";
 
   let i = 0;

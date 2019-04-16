@@ -25,6 +25,7 @@ var isInterleave = function (s1, s2, s3) {
     set.add(`${one}-${two}`);
 
     if (three === s3.length && one === s1.length && two === s2.length) return true;
+    
     if (one < s1.length && s3[three] === s1[one]) queue.push([one + 1, two, three + 1]);
     if (two < s2.length && s3[three] === s2[two]) queue.push([one, two + 1, three + 1]);
   }
