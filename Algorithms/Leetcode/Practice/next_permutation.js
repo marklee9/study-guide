@@ -21,28 +21,25 @@ function nextPermutation(arr) {
   let i = arr.length - 2;
   while (i >= 0 && arr[i + 1] <= arr[i]) i--;
 
-  if (i < 0) {
+  if (i === -1) {
     reverse(0);
     return;
   }
 
   let j = arr.length - 1;
-
+  
   while (j >= 0 && arr[j] <= arr[i]) j--;
   swap(i, j);
   reverse(i + 1);
   return;
 
+  // helper functions
   function swap(start, end) {
-    let temp = arr[start];
-    arr[start] = arr[end];
-    arr[end] = temp;
+    [arr[start], arr[end]] = [arr[end], arr[start]];
   }
 
   function reverse(start) {
     let end = arr.length - 1;
-    while(start < end) {
-      swap(start++, end--);
-    }
+    while (start < end) swap(start++, end--);
   }
 }

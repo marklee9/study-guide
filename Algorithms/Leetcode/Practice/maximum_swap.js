@@ -36,10 +36,7 @@ function maxSwap(num){
 
     if (max !== str[i]) {
       let arr = str.split("");
-      let temp = arr[i];
-      arr[i] = arr[index];
-      arr[index] = temp;
-
+      [arr[i], arr[index]] = [arr[index], arr[i]];
       return Number(arr.join(""));
     }
   }
