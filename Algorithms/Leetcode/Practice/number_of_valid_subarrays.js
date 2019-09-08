@@ -40,16 +40,15 @@ function vs(nums) {
 // Stack, Time: O(n), Space: O(n)
 var validSubarrays = function (nums) { 
   let count = 0;
-  if (!nums || nums.length === 0) {
-    return count;
-  }
+  if (!nums || nums.length === 0) return count;
+
   const stack = [];
+  
   for (const num of nums) {
-    while (stack.length && num < stack[stack.length - 1]) {
-      stack.pop();
-    }
+    while (stack.length && num < stack[stack.length - 1]) stack.pop();
     stack.push(num);
     count += stack.length;
   }
+
   return count;
 };
